@@ -14,7 +14,7 @@ class CreateDataLaundryModelsTable extends Migration
     public function up()
     {
         Schema::create('DataLaundry', function (Blueprint $table) {
-            $table->increments('idTrans');
+            $table->increments('id');
             $table->string('cust_name');
             $table->integer('cust_num');
             $table->integer('kg_laundry');
@@ -22,10 +22,10 @@ class CreateDataLaundryModelsTable extends Migration
             $table->integer('type_laundry');
             $table->date('dateIn');
             $table->date('dateDone');
-            $table->date('dateTaken');
+            $table->date('dateTaken')->null();
             $table->integer('total_payment');
             $table->string('payment_stats');
-            $table->integer('idPetugas');
+            $table->integer('idPetugas')->null();
             $table->timestamps();
         });
     }

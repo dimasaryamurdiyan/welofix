@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Paket_model;
 
 class paket_cont extends Controller
 {
@@ -13,7 +14,8 @@ class paket_cont extends Controller
      */
     public function index()
     {
-        //
+        $data = Paket_model::all();
+        return view('paket', compact('data'));
     }
 
     /**
@@ -23,7 +25,7 @@ class paket_cont extends Controller
      */
     public function create()
     {
-        //
+         return view('paket_create');
     }
 
     /**
@@ -34,7 +36,11 @@ class paket_cont extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Paket_model();
+        $data->nama_paket = $request->nama;
+        $data->harga_paket = $request->harga;
+        $data->save();
+        return redirect()->route('paket.index')->with('alert-success','Berhasil Menambahkan Data!');
     }
 
     /**
@@ -56,7 +62,8 @@ class paket_cont extends Controller
      */
     public function edit($id)
     {
-        //
+         $data = Paket_model::findOrFail($id);
+        return view('paket_edit',compact('data'));
     }
 
     /**
@@ -68,7 +75,11 @@ class paket_cont extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Paket_model::where('id',$id)->first();
+        $data->nama_paket = $request->nama;
+        $data->harga_paket = $request->harga;
+        $data->save();
+        return redirect()->route('paket.index')->with('alert-success','Berhasil Mengubah Data!');
     }
 
     /**
@@ -79,6 +90,8 @@ class paket_cont extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Paket_model::where('id',$id)->first();
+        $data->delete();
+        return redirect()->route('paket.index')->with('alert-success','Data berhasil dihapus!');
     }
 }

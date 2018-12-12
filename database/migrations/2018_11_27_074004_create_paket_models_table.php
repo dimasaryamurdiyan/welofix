@@ -14,7 +14,7 @@ class CreatePaketModelsTable extends Migration
     public function up()
     {
         Schema::create('Paket', function (Blueprint $table) {
-            $table->increments('id_paket');
+            $table->increments('id');
             $table->string('nama_paket');
             $table->string('harga_paket');
             $table->timestamps();
