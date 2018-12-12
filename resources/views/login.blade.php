@@ -28,16 +28,29 @@
     <section class="container-fluid bg">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-3">
-                <form class="form-container">
+                @if(\Session::has('alert'))
+                    <div class="alert alert-danger">
+                        <div>{{Session::get('alert')}}</div>
+                    </div>
+                @endif
+                @if(\Session::has('alert-success'))
+                    <div class="alert alert-success">
+                        <div>{{Session::get('alert-success')}}</div>
+                    </div>
+                @endif
+                <form class="form-container" action="admin/login" method="post">
+                    {{ csrf_field()  }}
                 <h1 class="logo-login text-center font-italic">WELO</h1>
                 <h4 class="text-center">Admin Panel</h4>
                     <div class="form-group">
-                        <input type="username" class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="nama pengguna">
+                        <input type="username" class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="nama pengguna"
+                        name="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="kata sandi">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="kata sandi"
+                        name="pswrd">
                     </div>
-                    <a type="submit" class="btn btn-primary btn-block" href="/">MASUK</a>
+                    <button type="submit" class="btn btn-primary btn-block">MASUK</button>
                 </form>
             </section>
         </section>

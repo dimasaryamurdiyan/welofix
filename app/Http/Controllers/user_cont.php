@@ -23,6 +23,24 @@ class user_cont extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function login(Request $request)
+    {
+        $q = user_model::where('username',$request->username)->where('passsword',$request->pswrd)->first();
+        if($q->count()>0){
+            if($q->status=="Pemilik"){
+//                return view pemilik
+            }
+            else if($q->status=="Karyawan"){
+//                return view karyawan
+                echo "karyawan";
+            }
+        }else{
+//            Gagal
+        }
+    }
+    /**
+     * Login Function
+     */
     public function create()
     {
         return view('user_create');

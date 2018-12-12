@@ -21,3 +21,4 @@ Route::get('/', function () {
     return view('bases');
 });
 Route::resource('user','user_cont');
+Route::post('/admin/login', 'user_cont@login');
